@@ -1,0 +1,9 @@
+# temp files
+.DS_Store
+
+# notes and reference
+notes.md
+/ref
+
+# packages
+elasticsearch-7.10.0
