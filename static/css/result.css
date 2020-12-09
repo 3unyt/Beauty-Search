@@ -1,41 +1,30 @@
-/* ------- CSS only for the SERP Page ------- */
 
 body {
-  color: var(--text-color);
+  color: black;
   font-family: Helvetica Neue, Arial, sans-serif;
   font-size: 17px;
   line-height: normal;
   margin: 0;
 }
 
-.serp {
-  min-height: 100%;
-  position: relative;
-  width: 100%;
+button {
+  border: none;
+  background-color: #ffffffd1;
+  color: black;
+  cursor: pointer;
+  margin-left: 80px;
+  padding: 8px 16px;
 }
 
 .serp__layout {
   border-bottom: 1px solid silver;
 }
 
-.serp__body {
+.result_body {
   display: block;
+  margin: 14px 90px;
 }
 
-@media (min-width:600px) {
-  .serp__body {
-    margin-top: 14px;
-    max-width: 820px;
-  }
-}
-
-@media (min-width:990px) {
-  .serp__body {
-    display: flex;
-    margin-left: 90px;
-    max-width: 1040px;
-  }
-}
 
 .serp__main {
   max-width: 100%;
@@ -59,38 +48,16 @@ body {
   width: 100%;
 }
 
-.serp__header {
+.result_header {
   background-image: url("../img/bkg_header.jpg");
-  display: flex;
   flex-wrap: wrap;
-  min-height: 60px;
+  min-height: 70px;
   padding: 10px 10px 0;
   margin: 0;
+  align-items: center;
 }
 
-@media (min-width:800px) {
-  .serp__header {
-    align-items: center;
-    min-height: 70px;
-  }
-}
 
-.serp__header>div {
-  flex: 1;
-}
-
-@media (min-width:600px) {
-  .serp__header .serp__search {
-    order: 2;
-    margin-left: 11px;
-  }
-}
-
-@media (min-width:990px) {
-  .serp__header .serp__search {
-    margin-left: 31px;
-  }
-}
 
 .serp__logo {
   background-image: url("../img/se.png");
