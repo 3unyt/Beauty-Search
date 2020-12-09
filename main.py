@@ -1,12 +1,16 @@
 import os
 from flask import Flask, render_template, request
-from beauty_search import load_data, index_sephora, search_query, get_product
+from beauty_search import load_data, index_sephora, get_product_result, get_similar_product
+from elasticsearch import Elasticsearch
 
 app = Flask(__name__)
 
 APP__ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# global variables for flask app
 df = load_data("./data/sephora_website_dataset.csv")
+es = Elasticsearch()
+
 print("data loaded")
 
 @app.route('/')
@@ -15,22 +19,25 @@ def index():
 
 @app.route("/init", methods=['POST'])
 def initialize():
-    res = index_sephora(df)
+    res = index_sephora(es, df)
     init_text = [res]
 
     return render_template("index.html", init=init_text)
 
 @app.route("/query", methods=['POST'])
 def process_query():
+    global df
     query = request.form['query']
-    if not query:
-        result = []
-    else:
+    if query:
         k = 10
-        ids, scores = search_query(query, k, "details")
+        products = get_product_result(es, df, query, k)
+        similar_products = {}
+        for pid in products.keys():
+            similar_products[pid] = get_similar_product(es, df, pid)
+             
+    return render_template("result.html", query=query, result={"products":products, "similar":similar_products})
 
-        result = ['{}\t {:.4f} \t {}'.format(ids[i], scores[i], get_product(ids[i])) for i in range(k)]
-    return render_template("result.html", query=query, result=result)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

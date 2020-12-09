@@ -16,6 +16,7 @@ button {
   padding: 8px 16px;
 }
 
+
 .result_header {
   background-image: url("../img/bkg_header.jpg");
   flex-wrap: wrap;
@@ -47,24 +48,23 @@ button {
   line-height: 1.4;
 }
 
-a .result_title:hover {
+.result_title:hover {
   text-decoration: underline;
 }
 
 .url {
   color: #078307;
-  font-size: 16px;
+  font-size: 14px;
   word-break: break-all;
   line-height: 1.4;
   overflow: ellipsis;
 }
 
-.result_description {
-  color: black;
-  line-height: normal;
+.result_similar {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.result_similar:hover {
+  text-decoration: underline;
 }
 
-.result_match {
-  color: black;
-  font-weight: bold;
-}

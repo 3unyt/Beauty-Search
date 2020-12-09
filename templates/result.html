@@ -19,14 +19,21 @@
 
         
         <div>
-            {% for line in result %}
+            {% for pid, product in result.products.items() %}
             
             <div class="search_result">
-                <a href="##" target="_blank">
-                <div class="result_title">{{line.split('\t')[-1]}}</div>
-                <div class="url">https://example.de</div>
+                <a href={{product.url}} target="_blank">
+                <div class="result_title">{{product.brand}}</div>
+                <div class="result_title" style="font-size:16px"> {{product.name}}</div>
+                <div class="url"> {{product.url}} </div>
                 </a>
-                <span class="result_description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut <span class="result_match">labore et dolore</span> magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </span>
+                <span > {{product.details}} </span> <br>
+                <span style="font-weight:bold"> Similar Products:</span> <br>
+                {% for sid, prod in result.similar[pid].items() %}
+                <a href={{prod.url}} target="_blank" class="result_similar"> 
+                    {{prod.brand}} | {{prod.name}}
+                </a> <br>
+                {% endfor %}
             </div>
             {% endfor %}
         </div>
