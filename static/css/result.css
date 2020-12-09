@@ -59,64 +59,12 @@ a .result_title:hover {
   overflow: ellipsis;
 }
 
-
-
-.serp__description {
-  color: var(--text-color);
+.result_description {
+  color: black;
   line-height: normal;
 }
 
-.serp__match {
+.result_match {
   color: black;
   font-weight: bold;
-}
-
-.serp__sticky {
-  background-color: white;
-  display: block;
-  line-height: 1.4;
-  padding: 0;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 20px;
-}
-
-.serp__headline {
-  color: #444;
-  font-size: 12px;
-  font-weight: 400;
-  margin: 20px 0 8px;
-}
-
-.serp__hint {
-  color: black;
-  margin: 0;
-  padding: 4px 0;
-  font-size: 18px;
-  height: 28px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-}
-  
-.serp__related {
-  color: #2619AF;
-  text-decoration: none;
-}
-
-.serp__links {
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-@media (min-width:600px) {
-  .serp__links {
-    display: inline-flex;
-    flex: none;
-    order: 2;
-  }
 }
