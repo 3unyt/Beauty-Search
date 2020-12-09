@@ -1,5 +1,3 @@
-/* ------- CSS only for the Startpage ------- */
-
 body {
   background-image: url("../img/bkg_beauty.jpg");
   font-size: 16px;
@@ -46,16 +44,9 @@ button {
 }
 
 
-.index .index__search {
+.index__search {
   width: 100%;
   max-width: 600px;
-}
-
-.index__footer {
-  flex: 1;
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
 }
 
 
@@ -86,25 +77,15 @@ button {
   -webkit-appearance: none;
 }
 
-.index__button {
-  background-color: white;
-  border: 0;
-  cursor: pointer;
-  flex: 0 0 40px;
-  font-weight: 500;
-  height: 38px;
-  line-height: 38px;
-  padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+
+.index__footer {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
 }
 
-
-
 .index__bottom {
-  color: #444;
   display: flex;
   flex-wrap: wrap;
   font-size: 13px;
