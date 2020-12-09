@@ -16,38 +16,6 @@ button {
   padding: 8px 16px;
 }
 
-.serp__layout {
-  border-bottom: 1px solid silver;
-}
-
-.result_body {
-  display: block;
-  margin: 14px 90px;
-}
-
-
-.serp__main {
-  max-width: 100%;
-}
-
-@media (min-width:600px) {
-  .serp__main {
-    padding: 0 17px;
-  }
-}
-
-@media (min-width:990px) {
-  .serp__main {
-    flex: 66%;
-    max-width: 66%;
-  }
-}
-
-.serp__footer {
-  margin: 30px 0 0;
-  width: 100%;
-}
-
 .result_header {
   background-image: url("../img/bkg_header.jpg");
   flex-wrap: wrap;
@@ -57,99 +25,39 @@ button {
   align-items: center;
 }
 
-
-
-.serp__logo {
-  background-image: url("../img/se.png");
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
+.result_body {
   display: block;
-  flex: 0 0 40px;
-  height: 40px;
-  margin: 0 0 0 10px;
-}
-
-@media (min-width:600px) {
-  .serp__logo {
-    order: 1;
-  }
+  margin: 14px 90px;
 }
 
 
-.serp__button,
-.serp__button {
-  background-color: transparent;
-  cursor: pointer;
-  flex: 0 0 40px;
-  font-weight: 500;
-  padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-
-.serp__results {
-  background: silver;
-  padding: 5px 0 5px 0;
-}
-
-@media (min-width:600px) {
-  .serp__results {
-    background-color: white;
-    padding: 5px 2em 0 0;
-  }
-}
-
-.serp__results>div {
-  background-color: white;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, .1), 0 0 1px rgba(0, 0, 0, .1);
-  margin: 5px 10px;
-  padding: 5px 8px;
-}
-
-
-.serp__web {
-  background-color: inherit;
-  font-size: 14px;
-}
-
-
-.serp__result {
+.search_result {
   margin: 0;
   padding: 8px 0;
 }
 
-.serp__result a {
+.search_result a {
   text-decoration: none;
 }
 
-.serp__title {
+.result_title {
   color: #2619AF;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.4;
 }
 
-a .serp__title:hover {
+a .result_title:hover {
   text-decoration: underline;
 }
 
-.serp__url {
+.url {
   color: #078307;
   font-size: 16px;
   word-break: break-all;
   line-height: 1.4;
   overflow: ellipsis;
 }
-
-.serp__result a:hover span:nth-child(1),
-.serp__result a:hover div:nth-child(1) {
-  text-decoration: underline;
-}
-
 
 
 

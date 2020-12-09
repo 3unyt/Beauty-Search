@@ -18,13 +18,13 @@
         {% endif %}
 
         
-        <div class="serp__web">
+        <div>
             {% for line in result %}
             
-            <div class="serp__result">
+            <div class="search_result">
                 <a href="##" target="_blank">
-                <div class="serp__title">{{line.split('\t')[-1]}}</div>
-                <div class="serp__url">https://example.de</div>
+                <div class="result_title">{{line.split('\t')[-1]}}</div>
+                <div class="url">https://example.de</div>
                 </a>
                 <span class="serp__description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut <span class="serp__match">labore et dolore</span> magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </span>
             </div>
