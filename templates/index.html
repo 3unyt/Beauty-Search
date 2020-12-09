@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>BeautySearch</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="icon" type="image/png" href="../static/img/se.png">
+    </head>
+    <body>
+        <div class="index">
+            
+            <section class="index__header">
+                <h1>Welcome to Beauty Search!</h1>
+                <p> A search engine for beauty products powered by ElasticSearch.</p>  
+                 
+                <div class="index__search">
+                    <form class="index__form" role="form" method='POST' action="{{url_for('process_query')}}">
+                        <div>
+                            <input type="search" name="query" class="index__query">
+                        </div>
+                        <button class="index__button" type="submit">
+                            <div class="index__ico"></div>
+                        </button> 
+                    </form>
+                </div>
+            </section>
+            <footer class="index__footer">
+            <div class="index__bottom">
+                <p class="index__copyright">&copy; 2020 Yuting Sun</p>
+            </div>
+            </footer>
+        </div>
+        
+    </body>
+    
+</html>

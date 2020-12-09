@@ -1,0 +1,247 @@
+/* ------- CSS only for the SERP Page ------- */
+
+body {
+  color: var(--text-color);
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 17px;
+  line-height: normal;
+  margin: 0;
+}
+
+.serp {
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.serp__layout {
+  border-bottom: 1px solid silver;
+}
+
+.serp__body {
+  display: block;
+}
+
+@media (min-width:600px) {
+  .serp__body {
+    margin-top: 14px;
+    max-width: 820px;
+  }
+}
+
+@media (min-width:990px) {
+  .serp__body {
+    display: flex;
+    margin-left: 90px;
+    max-width: 1040px;
+  }
+}
+
+.serp__main {
+  max-width: 100%;
+}
+
+@media (min-width:600px) {
+  .serp__main {
+    padding: 0 17px;
+  }
+}
+
+@media (min-width:990px) {
+  .serp__main {
+    flex: 66%;
+    max-width: 66%;
+  }
+}
+
+.serp__footer {
+  margin: 30px 0 0;
+  width: 100%;
+}
+
+.serp__header {
+  background-image: url("../img/bkg_header.jpg");
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 60px;
+  padding: 10px 10px 0;
+  margin: 0;
+}
+
+@media (min-width:800px) {
+  .serp__header {
+    align-items: center;
+    min-height: 70px;
+  }
+}
+
+.serp__header>div {
+  flex: 1;
+}
+
+@media (min-width:600px) {
+  .serp__header .serp__search {
+    order: 2;
+    margin-left: 11px;
+  }
+}
+
+@media (min-width:990px) {
+  .serp__header .serp__search {
+    margin-left: 31px;
+  }
+}
+
+.serp__logo {
+  background-image: url("../img/se.png");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  flex: 0 0 40px;
+  height: 40px;
+  margin: 0 0 0 10px;
+}
+
+@media (min-width:600px) {
+  .serp__logo {
+    order: 1;
+  }
+}
+
+
+.serp__button,
+.serp__button {
+  background-color: transparent;
+  cursor: pointer;
+  flex: 0 0 40px;
+  font-weight: 500;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.serp__results {
+  background: silver;
+  padding: 5px 0 5px 0;
+}
+
+@media (min-width:600px) {
+  .serp__results {
+    background-color: white;
+    padding: 5px 2em 0 0;
+  }
+}
+
+.serp__results>div {
+  background-color: white;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, .1), 0 0 1px rgba(0, 0, 0, .1);
+  margin: 5px 10px;
+  padding: 5px 8px;
+}
+
+
+.serp__web {
+  background-color: inherit;
+  font-size: 14px;
+}
+
+
+.serp__result {
+  margin: 0;
+  padding: 8px 0;
+}
+
+.serp__result a {
+  text-decoration: none;
+}
+
+.serp__title {
+  color: #2619AF;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+a .serp__title:hover {
+  text-decoration: underline;
+}
+
+.serp__url {
+  color: #078307;
+  font-size: 16px;
+  word-break: break-all;
+  line-height: 1.4;
+  overflow: ellipsis;
+}
+
+.serp__result a:hover span:nth-child(1),
+.serp__result a:hover div:nth-child(1) {
+  text-decoration: underline;
+}
+
+
+
+
+.serp__description {
+  color: var(--text-color);
+  line-height: normal;
+}
+
+.serp__match {
+  color: black;
+  font-weight: bold;
+}
+
+.serp__sticky {
+  background-color: white;
+  display: block;
+  line-height: 1.4;
+  padding: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+}
+
+.serp__headline {
+  color: #444;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 20px 0 8px;
+}
+
+.serp__hint {
+  color: black;
+  margin: 0;
+  padding: 4px 0;
+  font-size: 18px;
+  height: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+  
+.serp__related {
+  color: #2619AF;
+  text-decoration: none;
+}
+
+.serp__links {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width:600px) {
+  .serp__links {
+    display: inline-flex;
+    flex: none;
+    order: 2;
+  }
+}

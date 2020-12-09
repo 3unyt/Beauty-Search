@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>BeautySearch</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/result.css">
+    </head>
+    <body>
+    <div class="serp">
+        <div class="serp__layout">
+            <div class="serp__header">
+            {% if query %}
+            <h4> TOP 10 relevant products for query: {{query}}</h4>
+            {% endif %}
+            </div>
+        </div>
+
+        <div class="serp__body">
+        <div class="serp__main serp__results">    
+            <div class="serp__web">
+                {% for line in result %}
+                
+                <div class="serp__result">
+                    <a href="##" target="_blank">
+                    <div class="serp__title">{{line.split('\t')[-1]}}</div>
+                    <div class="serp__url">https://example.de</div>
+                    </a>
+                    <span class="serp__description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut <span class="serp__match">labore et dolore</span> magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>    
+        </div>
+    </div>   
+    </body>
+    
+</html>

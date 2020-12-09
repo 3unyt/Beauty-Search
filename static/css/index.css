@@ -1,0 +1,120 @@
+/* ------- CSS only for the Startpage ------- */
+
+body {
+  background-image: url("../img/bkg_beauty.jpg");
+  font-size: 16px;
+  line-height: 1.2;
+  background-size: auto;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  font-family: Helvetica, Helvetica Neue, Arial, sans-serif;
+}
+
+.index__header,
+.index__bottom {
+  opacity: 0.7;
+  background-color: white
+}
+
+.index {
+  height: 100vh;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.index,
+.index__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.index__header {
+  flex: 2;
+  margin-top: 10%;
+  width: 100%;
+  max-width: 600px;
+  padding: 10;
+  flex-direction: column;
+}
+
+
+.index .index__search {
+  width: 100%;
+  max-width: 600px;
+}
+
+.index__footer {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+
+.index__form {
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid silver;
+  display: flex;
+}
+
+.index__form>div {
+  flex: 1;
+}
+
+.index__query {
+  background: transparent;
+  opacity: 1;
+  border: 0;
+  color: black;
+  display: block;
+  font-size: 16px;
+  height: 38px;
+  line-height: 38px;
+  margin: 0;
+  outline: none;
+  padding: 5px 10px 5px 15px;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.index__button {
+  background-color: white;
+  border: 0;
+  cursor: pointer;
+  flex: 0 0 40px;
+  font-weight: 500;
+  height: 38px;
+  line-height: 38px;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.index__button .index__ico {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg height='32' width='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z' fill='%234f5f8f'/%3E%3C/svg%3E");
+  background-size: 20px 20px;  
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  height: 38px;
+  width: 40px;
+}
+
+
+.index__bottom {
+  color: #444;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  justify-content: center;
+  padding: 2em 0;
+  text-align: center;
+  width: 100%;
+}
+
+
+
