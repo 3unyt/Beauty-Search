@@ -13,21 +13,38 @@ def load_data(file):
     df["body"] = (df.brand + " " + df.name + " "+ df.details +" "+ df.how_to_use)
     return df
 
-def index_sephora(es, df):
+def get_prod_info(df, i):
+    content = {"brand": df.iloc[i].brand,
+            "category": df.iloc[i].category,
+            "name": df.iloc[i]["name"],
+            "rating": df.iloc[i].rating,
+            "love": df.iloc[i].love,
+            "price": df.iloc[i].price,
+            "url": df.iloc[i].URL,
+            "details": df.iloc[i].body,
+            "ingredients": df.iloc[i].ingredients}
+    return content
+
+def index_sephora(es):
     if es.indices.exists(index='sephora'):
         res = "Index 'sephora' already exists, skip indexing."
         print(res)
         return res
+    print("Loading data...")    
+    df = df = load_data("./data/sephora_website_dataset.csv")
+    
+    print("Indexing sephora ...")
     for i in range(df.shape[0]):
         product_id = df.iloc[i].id
-        body = {"details": df.iloc[i].body,
-                "ingredients": df.iloc[i].ingredients}
-        es.index(index='sephora', id=product_id, body=body)
-        res = "Indexing completed."
-        print(res)
-        return res
+        content = get_prod_info(df, i)
+        es.index(index='sephora', id=product_id, body=content)
+    res = "Indexing completed."
+    print(res)
+    return res
 
-def search_query(es, df, query, size, param):
+
+
+def search_query(es, query, size, param):
     body = {
         "from":0,
         "size": size,
@@ -46,52 +63,43 @@ def search_query(es, df, query, size, param):
         ids.append(i)
         scores.append(score)
 
-        title = get_product_title(df, i)
+        source = es.get(index="sephora", id=i)['_source']
+        title = source['brand'] + " | " + source['name']
+        
         print(i, score, title, sep="\t")
         
     return ids, scores
 
 
 
-def get_product_result(es, df, query, size):
-    ids, scores = search_query(es, df, query, size, "details")
+def get_product_result(es, query, size):
+    ids, scores = search_query(es, query, size, "details")
     result = {}
     for pid in ids:
-        result[pid] = get_product_by_id(df, pid)
+        result[pid] = es.get(index="sephora", id=pid)['_source']
     return result
 
-def get_similar_product(es, df, id):
-    ingredients = df[df.id==int(id)].ingredients.values[0]
-    ids, scores = search_query(es, df, ingredients, 5, "ingredients")
+def get_similar_product(es, id):
+    ingredients = es.get(index="sephora", id=id)['_source']["ingredients"]
+    ids, scores = search_query(es, ingredients, 5, "ingredients")
     result = {}
     for pid in ids:
         if pid==id: continue
-        result[pid] = get_product_by_id(df, pid)
+        result[pid] = es.get(index="sephora", id=pid)['_source']
     return result
 
 
 
-def get_product_by_id(df, id):
-    product = {}
-    product["brand"] = df[df.id==int(id)]["brand"].values[0]
-    product["name"] = df[df.id==int(id)]["name"].values[0]
-    product["price"] = "$"+str(df[df.id==int(id)].price.values[0])
-    product["size"] = df[df.id==int(id)]["size"].values[0]
-    product["details"] = df[df.id==int(id)].details.values[0].split(".")[0]
-    product["url"] = df[df.id==int(id)].URL.values[0]
-    return product
 
-def get_product_title(df, id):
-    res = " | ".join(df[df.id==int(id)][["brand","name"]].values[0])
-    return res
+
 
 if __name__ == "__main__":
-    df = load_data("./data/sephora_website_dataset.csv")
+    
     es = Elasticsearch()
-    index_sephora(es, df)
-    # search_query(es, df, "skin care for men", 10, "details")
-    res = get_similar_product(es, df, 1866706)
-    p = get_product_by_id(df, 1866706)
-    print(p)
+    index_sephora(es)
+    # search_query(es, "skin care for men", 10, "details")
+    res = get_similar_product(es, 1866706)
+    # p = get_product_by_id(df, 1866706)
+    # print(p)
 
     

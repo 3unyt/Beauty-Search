@@ -8,7 +8,6 @@ app = Flask(__name__)
 APP__ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # global variables for flask app
-df = load_data("./data/sephora_website_dataset.csv")
 es = Elasticsearch()
 
 print("data loaded")
@@ -19,21 +18,20 @@ def index():
 
 @app.route("/init", methods=['POST'])
 def initialize():
-    res = index_sephora(es, df)
+    res = index_sephora(es)
     init_text = [res]
 
     return render_template("index.html", init=init_text)
 
 @app.route("/query", methods=['POST'])
 def process_query():
-    global df
     query = request.form['query']
     if query:
         k = 10
-        products = get_product_result(es, df, query, k)
+        products = get_product_result(es, query, k)
         similar_products = {}
         for pid in products.keys():
-            similar_products[pid] = get_similar_product(es, df, pid)
+            similar_products[pid] = get_similar_product(es, pid)
              
     return render_template("result.html", query=query, result={"products":products, "similar":similar_products})
 
