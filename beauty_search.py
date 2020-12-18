@@ -14,7 +14,7 @@ def load_data(file):
     return df
 
 def get_prod_info(df, i):
-    content = {"brand": df.iloc[i].brand,
+    product = {"brand": df.iloc[i].brand,
             "category": df.iloc[i].category,
             "name": df.iloc[i]["name"],
             "rating": df.iloc[i].rating,
@@ -24,7 +24,7 @@ def get_prod_info(df, i):
             "details": df.iloc[i].details,
             "content": df.iloc[i].content,
             "ingredients": df.iloc[i].ingredients}
-    return content
+    return product
 
 def index_sephora(es):
     if es.indices.exists(index='sephora'):
@@ -45,18 +45,22 @@ def index_sephora(es):
 
 
 
-def search_query(es, query, size, field):
+def basic_search(es, query, size):
     body = {
         "from":0,
         "size": size,
         "query" : {
-            "match": { field: query }
+            "multi_match": { 
+                "query" : query,
+                "fields" : [ "brand^2", "name^2", "category", "details" ] 
+            }    
         },
+
         "highlight" : {
-            "pre_tags" : ["<mark>"],
-            "post_tags" : ["</mark>"],
+            "pre_tags" : ["<b>"],
+            "post_tags" : ["</b>"],
             "fields" : {
-                field : {}
+                "details" : {}
             }
         }
     }
@@ -73,20 +77,40 @@ def search_query(es, query, size, field):
         
     return res['hits']['hits']
 
+def ingredients_search(es, query, size):
+    body = {
+        "from":0,
+        "size": size,
+        "query" : {
+            "match": { 
+                "ingredients" : query,
+            }    
+        },
+
+        "highlight" : {
+            "pre_tags" : ["<mark>"],
+            "post_tags" : ["</mark>"],
+            "fields" : {
+                "ingredients" : {}
+            }
+        }
+    }
+    res = es.search(index="sephora", body=body)
+    return res['hits']['hits']
 
 
 def get_product_result(es, query, size):
-    hits = search_query(es, query, size, "content")
+    hits = basic_search(es, query, size)
     result = {}
     for hit in hits:
         pid = hit['_id']
         result[pid] = hit['_source']
-        result[pid]['highlight'] = hit['highlight']['content'][0]
+        result[pid]['highlight'] = hit['highlight']['details'][0]
     return result
 
 def get_similar_product(es, id):
     ingredients = es.get(index="sephora", id=id)['_source']["ingredients"]
-    hits = search_query(es, ingredients, 5, "ingredients")
+    hits = ingredients_search(es, ingredients, 5)
     sim_result = {}
     for hit in hits:
         pid = hit['_id']
