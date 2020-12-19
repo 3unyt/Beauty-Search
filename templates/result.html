@@ -27,13 +27,18 @@
                 <div class="result_title" style="font-size:16px"> {{product.name}}</div>
                 <div class="url"> {{product.url}} </div>
                 </a>
-                <span > {{ product.highlight | safe}} </span> <br>
-                <span style="font-weight:bold"> Similar Products:</span> <br>
+                <span > {{ product.description | safe}} </span> <br>
+                
                 {% for sid, prod in result.similar[pid].items() %}
+                    {% if sid==pid %}
+                    <span style="font-size:14px"> <b>Selected Ingredients:</b> {{ prod.highlight | safe}} </span> <br><br>
+                    <span style="font-size:14px"> <b>Products with similar ingredients:</b></span> <br>
+                    {% else %}
                     <a href={{prod.url}} target="_blank" class="result_similar"> 
                         {{prod.brand}} | {{prod.name}}
                     </a> <br>
-                     <span style="font-size:14px"> --> <b>Similar Ingredients:</b> {{ prod.highlight | safe}} </span> <br>
+                     <span style="font-size:13px"> --> {{ prod.highlight | safe}} </span> <br>
+                     {% endif %}
                 {% endfor %}
                 
             </div>
