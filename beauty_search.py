@@ -168,8 +168,6 @@ if __name__ == "__main__":
     
     es = Elasticsearch()
     index_sephora(es)
-    # search_query(es, "skin care for men", 10, "details_combo")
-    # res = get_similar_product(es, 1866706)
-    # print(p)
+
 
     
