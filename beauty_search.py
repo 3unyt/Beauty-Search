@@ -10,19 +10,19 @@ def load_data(file):
        'number_of_reviews', 'love', 'price', 'URL', 'details',
        'how_to_use', 'ingredients']
     df = df[select]
-    df["content"] = (df.brand + " " + df.name + " " + df.category + " " + df.details +" "+ df.how_to_use)
+    # discard products without ingredients information
+    df = df[df.ingredients!="unknown"]
     return df
 
 def get_prod_info(df, i):
     product = {"brand": df.iloc[i].brand,
             "category": df.iloc[i].category,
             "name": df.iloc[i]["name"],
-            "rating": df.iloc[i].rating,
+            "rating": df.iloc[i].rating, 
             "love": df.iloc[i].love,
             "price": df.iloc[i].price,
             "url": df.iloc[i].URL,
             "details": df.iloc[i].details,
-            "content": df.iloc[i].content,
             "ingredients": df.iloc[i].ingredients}
     return product
 
